@@ -21,7 +21,7 @@ const announce = (message: string, assertiveness: Assertiveness = POLITE) => {
 
 customElements.define('live-announcer', class extends HTMLElement {
 
-  private _assertiveness: string;
+  private _assertiveness: Assertiveness;
 
   connectedCallback() {
     this.className = 'screen-reader-text';

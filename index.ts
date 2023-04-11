@@ -9,14 +9,20 @@ const POLITE = 'polite';
 const ASSERTIVE = 'assertive';
 
 const announce = (message: string, assertiveness: Assertiveness = POLITE) => {
+  const announcerInstance = createInstance();
+
+  announcerInstance.assertiveness = assertiveness;
+  announcerInstance.message = message;
+};
+
+const createInstance = (): HTMLLiveAnnouncerElement => {
   let announcerInstance = <HTMLLiveAnnouncerElement>document.querySelector('live-announcer');
   if (!announcerInstance) {
     announcerInstance = <HTMLLiveAnnouncerElement>document.createElement('live-announcer');
     document.body.prepend(announcerInstance);
   }
 
-  announcerInstance.assertiveness = assertiveness;
-  announcerInstance.message = message;
+  return announcerInstance;
 };
 
 customElements.define('live-announcer', class extends HTMLElement {
@@ -40,4 +46,9 @@ customElements.define('live-announcer', class extends HTMLElement {
   }
 });
 
-export { announce, POLITE, ASSERTIVE };
+export {
+  announce,
+  createInstance,
+  POLITE,
+  ASSERTIVE
+};

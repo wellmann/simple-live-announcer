@@ -7,7 +7,7 @@
     "@wellmann:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "prepare": "tsc index.ts --outDir dist --target esnext --types node",
+    "prepare": "tsc index.ts --outDir dist --target esnext --types node --declaration",
     "test": "jest index.test.ts"
   },
   "author": {

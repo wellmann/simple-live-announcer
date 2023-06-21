@@ -1,31 +1,9 @@
 type Assertiveness = 'polite' | 'assertive';
 
-interface HTMLLiveAnnouncerElement extends HTMLElement {
-  message: string;
-  assertiveness: Assertiveness;
-}
-
 const POLITE = 'polite';
 const ASSERTIVE = 'assertive';
 
-const announce = (message: string, assertiveness: Assertiveness = POLITE) => {
-  const announcerInstance = createInstance();
-
-  announcerInstance.assertiveness = assertiveness;
-  announcerInstance.message = message;
-};
-
-const createInstance = (): HTMLLiveAnnouncerElement => {
-  let announcerInstance = <HTMLLiveAnnouncerElement>document.querySelector('live-announcer');
-  if (!announcerInstance) {
-    announcerInstance = <HTMLLiveAnnouncerElement>document.createElement('live-announcer');
-    document.body.prepend(announcerInstance);
-  }
-
-  return announcerInstance;
-};
-
-customElements.define('live-announcer', class extends HTMLElement {
+class HTMLLiveAnnouncerElement extends HTMLElement {
 
   private _assertiveness: Assertiveness;
 
@@ -44,11 +22,31 @@ customElements.define('live-announcer', class extends HTMLElement {
 
     setTimeout(() => ariaLiveElement.innerText = message, 50);
   }
-});
+}
+
+const announce = (message: string, assertiveness: Assertiveness = POLITE) => {
+  const announcerInstance = createInstance();
+
+  announcerInstance.assertiveness = assertiveness;
+  announcerInstance.message = message;
+};
+
+const createInstance = (): HTMLLiveAnnouncerElement => {
+  let announcerInstance = <HTMLLiveAnnouncerElement>document.querySelector('live-announcer');
+  if (!announcerInstance) {
+    announcerInstance = <HTMLLiveAnnouncerElement>document.createElement('live-announcer');
+    document.body.prepend(announcerInstance);
+  }
+
+  return announcerInstance;
+};
+
+customElements.define('live-announcer', HTMLLiveAnnouncerElement);
 
 export {
   announce,
   createInstance,
   POLITE,
-  ASSERTIVE
+  ASSERTIVE,
+  HTMLLiveAnnouncerElement
 };

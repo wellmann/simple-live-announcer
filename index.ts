@@ -24,17 +24,17 @@ class HTMLLiveAnnouncerElement extends HTMLElement {
   }
 }
 
-const announce = (message: string, assertiveness: Assertiveness = POLITE) => {
-  const announcerInstance = createInstance();
+const announce = (message: string, assertiveness: Assertiveness = POLITE, elementName = undefined) => {
+  const announcerInstance = createInstance(elementName);
 
   announcerInstance.assertiveness = assertiveness;
   announcerInstance.message = message;
 };
 
-const createInstance = (): HTMLLiveAnnouncerElement => {
-  let announcerInstance = <HTMLLiveAnnouncerElement>document.querySelector('live-announcer');
+const createInstance = (elementName = 'live-announcer'): HTMLLiveAnnouncerElement => {
+  let announcerInstance = <HTMLLiveAnnouncerElement>document.querySelector(elementName);
   if (!announcerInstance) {
-    announcerInstance = <HTMLLiveAnnouncerElement>document.createElement('live-announcer');
+    announcerInstance = <HTMLLiveAnnouncerElement>document.createElement(elementName);
     document.body.prepend(announcerInstance);
   }
 

@@ -1,4 +1,4 @@
-import { announce, POLITE, ASSERTIVE } from "./index";
+import { announce, POLITE, ASSERTIVE, HTMLLiveAnnouncerElement } from "./index";
 
 test('prepend live announcer to body once', () => {
   const bodyContent = '<p>Lorem Ipsum</p>';
@@ -38,4 +38,12 @@ test('clear previous message', () => {
   announce(newMessage);
 
   expect(document.body.innerHTML).toContain(`<live-announcer class="screen-reader-text"><p aria-live="polite"></p><p aria-live="assertive"></p></live-announcer>`)
+});
+
+test('custom element name', () => {
+  customElements.define('kwio-live-announcer', class extends HTMLLiveAnnouncerElement {});
+  document.body.innerHTML = '';
+  announce('', POLITE, 'kwio-live-announcer');
+
+  expect(document.body.innerHTML).toEqual('<kwio-live-announcer class="screen-reader-text"><p aria-live="polite"></p><p aria-live="assertive"></p></kwio-live-announcer>');
 });

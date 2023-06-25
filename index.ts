@@ -1,5 +1,6 @@
 type Assertiveness = 'polite' | 'assertive';
 
+const TAG_NAME = 'live-announcer';
 const POLITE = 'polite';
 const ASSERTIVE = 'assertive';
 
@@ -24,24 +25,24 @@ class HTMLLiveAnnouncerElement extends HTMLElement {
   }
 }
 
-const announce = (message: string, assertiveness: Assertiveness = POLITE, elementName = undefined) => {
+const announce = (message: string, assertiveness: Assertiveness = POLITE, elementName: string | null = null) => {
   const announcerInstance = createInstance(elementName);
 
   announcerInstance.assertiveness = assertiveness;
   announcerInstance.message = message;
 };
 
-const createInstance = (elementName = 'live-announcer'): HTMLLiveAnnouncerElement => {
-  let announcerInstance = <HTMLLiveAnnouncerElement>document.querySelector(elementName);
+const createInstance = (elementName: string | null): HTMLLiveAnnouncerElement => {
+  let announcerInstance = <HTMLLiveAnnouncerElement>document.querySelector(elementName || TAG_NAME);
   if (!announcerInstance) {
-    announcerInstance = <HTMLLiveAnnouncerElement>document.createElement(elementName);
+    announcerInstance = <HTMLLiveAnnouncerElement>document.createElement(elementName || TAG_NAME);
     document.body.prepend(announcerInstance);
   }
 
   return announcerInstance;
 };
 
-customElements.define('live-announcer', HTMLLiveAnnouncerElement);
+customElements.define(TAG_NAME, HTMLLiveAnnouncerElement);
 
 export {
   announce,

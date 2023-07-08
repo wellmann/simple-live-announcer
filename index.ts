@@ -49,5 +49,6 @@ export {
   createInstance,
   POLITE,
   ASSERTIVE,
-  HTMLLiveAnnouncerElement
+  HTMLLiveAnnouncerElement,
+  Assertiveness
 };

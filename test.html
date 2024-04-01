@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>simple-live-announcer</title>
+  <style>
+    .screen-reader-text {
+      border: 0;
+      clip: rect(1px,1px,1px,1px);
+      clip-path: inset(50%);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute !important;
+      width: 1px;
+      word-wrap: normal !important;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="announce('Lorem ipsum')">Lorem ipsum (polite)</button>
+  <button onclick="announce('Foo bar')">Foo bar (polite)</button>
+  <script type="module">
+    import { announce, createInstance } from '/dist/index.js';
+    createInstance();
+
+    window.announce = announce;
+  </script>
+</body>
+</html>

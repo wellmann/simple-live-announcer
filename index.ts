@@ -53,7 +53,9 @@ const createInstance = (elementName = ''): HTMLLiveAnnouncerElement => {
   return announcerInstance;
 };
 
-customElements.define(TAG_NAME, HTMLLiveAnnouncerElement);
+if (!customElements.get(TAG_NAME)) {
+  customElements.define(TAG_NAME, HTMLLiveAnnouncerElement);
+}
 
 export {
   announce,

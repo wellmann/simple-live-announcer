@@ -7,7 +7,7 @@
     "@wellmann:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "prepare": "tsc index.ts --outDir dist --target esnext --types node --declaration",
+    "prepare": "tsc index.ts --outDir dist --target esnext --types node --declaration --moduleResolution node",
     "test": "jest index.test.ts"
   },
   "author": {
@@ -30,15 +30,15 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^27.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.19.0",
-    "@typescript-eslint/parser": "^5.19.0",
-    "eslint": "^8.13.0",
+    "@types/jest": "^27.5.2",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.57.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.8",
     "suppress-exit-code": "^1.0.0",
-    "ts-jest": "^27.1.4",
-    "typescript": "^4.6.3"
+    "ts-jest": "^27.1.5",
+    "typescript": "^4.9.5"
   }
 }
